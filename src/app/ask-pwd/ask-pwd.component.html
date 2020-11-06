@@ -1,0 +1,19 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card>
+        <mat-card-title>Secret Santa</mat-card-title>
+        <mat-card-content>
+            <mat-form-field>
+                <label>Ok {{currentPlayerName}}, quel est ta clé ?</label>
+                <input matInput formControlName="key">
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-mini-fab type="button" [disabled]="canGoPrevious === false">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <button mat-mini-fab type="submit" [disabled]="canGoNext === false">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</form>
