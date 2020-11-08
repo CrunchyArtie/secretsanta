@@ -1,5 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+    height: 100%;
+}
 
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-card-title img {
+    width: auto;
+    height: 30px;
+    padding-right: 5px;
+}
+
+.content > div {
+    position: relative;
+}
+
+.hat::after {
+    content: " ";
+    position: absolute;
+    right: -35px;
+    top: -60px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(17deg);
+    background-image: url("~src/assets/hat.svg");
+}

@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-title><img src="assets/tree.svg">Secret Santa</mat-card-title>
+    <mat-card-content>
+        <p>Soit tu tentes de tricher et t'es pas douée,</p>
+        <p>Soit tu t'es trompée dans tes identifiants, recommence :)</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-mini-fab type="button" [disabled]="canGoPrevious === false" (click)="goPrevious()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <!--        <button mat-mini-fab type="submit" [disabled]="canGoNext === false">-->
+        <!--            <mat-icon>keyboard_arrow_right</mat-icon>-->
+        <!--        </button>-->
+    </mat-card-actions>
+</mat-card>

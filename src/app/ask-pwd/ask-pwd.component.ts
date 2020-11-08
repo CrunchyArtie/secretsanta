@@ -13,8 +13,9 @@ import {StateService} from '../state.service';
 export class AskPwdComponent implements OnInit {
 
     form: FormGroup;
-    currentPlayerName: string;
-    private currentKey: string;
+    get currentPlayerName(): string {
+        return this.currentPlayerService.currentPlayer.name;
+    }
 
     get canGoNext(): boolean {
         return this.form.valid && this.stateService.canGoNext();
@@ -32,14 +33,17 @@ export class AskPwdComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.formBuilder.group({
-            key: [this.currentKey, Validators.required]
+            key: ['', Validators.required]
         });
 
     }
 
     onSubmit() {
-        this.currentPlayerService.givenKey = this.currentKey;
+        this.currentPlayerService.givenKey = this.form.value.key;
         this.stateService.goNext();
     }
 
+    public goPrevious() {
+        return this.stateService.goPrevious();
+    }
 }

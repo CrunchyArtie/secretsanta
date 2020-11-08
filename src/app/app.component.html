@@ -1,19 +1,10 @@
 <!-- <router-outlet></router-outlet> -->
 <div class="content">
 
-  <div [ngSwitch]="currentState">
+  <div [ngSwitch]="currentState" class="hat">
     <app-ask-name *ngSwitchCase="'AskName'"></app-ask-name>
     <app-ask-pwd *ngSwitchCase="'AskPwd'"></app-ask-pwd>
-<!--  <mat-card>-->
-<!--    <mat-card-title>Secret Santa</mat-card-title>-->
-<!--    <form [formGroup]="form" (ngSubmit)="onSubmit()">-->
-<!--      <mat-card-content>-->
-<!--          -->
-<!--            <mat-form-field>-->
-<!--              <label>Ta clé ?</label>-->
-<!--              <input matInput formControlName="key">-->
-<!--            </mat-form-field>-->
-<!--      </mat-card-content>-->
-<!--    </form>-->
-<!--  </mat-card>-->
+    <app-admin *ngSwitchCase="'Admin'"></app-admin>
+    <app-show-cheater *ngSwitchCase="'ShowCheater'"></app-show-cheater>
+    <app-show-result *ngSwitchCase="'ShowResult'"></app-show-result>
 </div>

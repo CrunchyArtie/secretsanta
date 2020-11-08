@@ -12,20 +12,21 @@ import {StateService} from '../state.service';
 })
 export class askNameComponent implements OnInit {
     form: FormGroup;
-    private currentPlayerName: string;
     private isValidPlayerName = (control: AbstractControl) => {
         if (this.playersService
             .players
-            .map(p => p.name.toLowerCase())
-            .includes(control.value.toLowerCase())) {
+            .map(p => this.slugify(p.name.toLowerCase()))
+            .includes(this.slugify(control.value.toLowerCase()))) {
             return of(null);
         } else {
             return of({'notPlayerNameValue': true});
         }
     }
+
     get canGoNext(): boolean {
         return this.form.valid && this.stateService.canGoNext();
     }
+
     get canGoPrevious(): boolean {
         return this.stateService.canGoPrevious();
     }
@@ -39,13 +40,35 @@ export class askNameComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.formBuilder.group({
-            name: [this.currentPlayerName, Validators.required, this.isValidPlayerName]
+            name: ['', Validators.required, this.isValidPlayerName]
         });
 
     }
 
     onSubmit() {
-        this.currentPlayerService.currentPlayer = this.playersService.players.find(p => p.name === this.currentPlayerName);
+        this.currentPlayerService.currentPlayer =
+            this.playersService.players
+                .find(p => this.slugify(p.name.toLocaleLowerCase()) === this.slugify(this.form.value.name.toLocaleLowerCase()));
         this.stateService.goNext();
     }
+
+    slugify(str: string) {
+        const map = {
+            '-': ' ',
+            // '-': '_',
+            'a': 'á|à|ã|â|À|Á|Ã|Â',
+            'e': 'é|è|ê|É|È|Ê',
+            'i': 'í|ì|î|Í|Ì|Î|ï',
+            'o': 'ó|ò|ô|õ|Ó|Ò|Ô|Õ',
+            'u': 'ú|ù|û|ü|Ú|Ù|Û|Ü',
+            'c': 'ç|Ç',
+            'n': 'ñ|Ñ'
+        };
+
+        for (let pattern in map) {
+            str = str.replace(new RegExp(map[pattern], 'g'), pattern);
+        }
+
+        return str;
+    };
 }
