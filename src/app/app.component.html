@@ -1,7 +1,7 @@
 <!-- <router-outlet></router-outlet> -->
 <div class="content">
 
-  <div [ngSwitch]="currentState" class="hat">
+  <div [ngSwitch]="currentState" [ngClass]="{ 'hat': showHat}">
     <app-ask-name *ngSwitchCase="'AskName'"></app-ask-name>
     <app-ask-pwd *ngSwitchCase="'AskPwd'"></app-ask-pwd>
     <app-admin *ngSwitchCase="'Admin'"></app-admin>

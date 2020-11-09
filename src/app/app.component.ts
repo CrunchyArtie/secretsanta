@@ -11,6 +11,9 @@ import {StateService} from './state.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+    public get showHat(): boolean {
+     return this.stateService.showHat;
+    }
     constructor(private playersService: PlayersService, private stateService: StateService) {
 
     }

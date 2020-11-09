@@ -1,11 +1,26 @@
-<mat-card>
-    <mat-card-title><img src="assets/tree.svg">Secret Santa</mat-card-title>
-    <mat-card-content>
-        <p>Ouvre le cracker pour savoir pour qui tu es le Secret Santa !</p>
+<div class="content">
+    <mat-card *ngIf="isCrackerDisplayed === false">
+        <mat-card-title><img src="assets/tree.svg">Secret Santa</mat-card-title>
+        <mat-card-content>
+            C'est bientôt fini !
+            Tu n'as plus qu'à passer à la page suivante et ouvrir le cracker !
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-flat-button color="warn" (click)="showCracker()">C'est parti !</button>
+
+            <div class="thanks">
+                <p>Merci & Joyeux noël :)</p>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+
+    <div class="cracker-container" *ngIf="isCrackerDisplayed">
         <div class='cracker' id='cracker'>
             <div class='cracker-message'>
                 <div class='cracker-message__inner'>
-                    {{associatedPlayer}}
+                    <mat-card>
+                        {{associatedPlayer}}
+                    </mat-card>
                 </div>
             </div>
             <div class='cracker-left'>
@@ -41,8 +56,6 @@
                 </div>
             </div>
         </div>
-        <div class="thanks">
-            <p>Merci & Joyeux noël :)</p>
-        </div>
-    </mat-card-content>
-</mat-card>
+    </div>
+
+</div>

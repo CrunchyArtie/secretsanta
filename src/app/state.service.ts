@@ -9,7 +9,16 @@ import {Player} from './player';
 })
 export class StateService {
 
-    public currentState= AppState.AskName;
+    public currentState = AppState.AskName;
+    public crackerTime = false;
+
+    get showHat(): boolean {
+        if(this.currentState !== AppState.ShowResult) {
+            return true
+        } else {
+            return this.crackerTime === false;
+        }
+    }
 
     constructor(
         private currentPlayerService: CurrentPlayerService,
